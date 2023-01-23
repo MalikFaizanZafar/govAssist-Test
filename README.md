@@ -15,3 +15,9 @@ npm run dev
 php artisan make:model URL -mcr
 
 # create model, controller and migrations
+
+# For Running the Project, following command should be run in sequence in different terminal windows
+
+npm run dev
+php artisan serve
+php artisan schedule:run
