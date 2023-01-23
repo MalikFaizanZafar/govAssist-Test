@@ -14,7 +14,9 @@ class URLController extends Controller
      */
     public function index()
     {
-        //
+        // Get All Urls
+        $urls = Url::latest()->get();
+        return view('home', ['urls' => $urls]);
     }
 
     /**
