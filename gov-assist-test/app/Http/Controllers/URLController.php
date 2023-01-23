@@ -58,9 +58,18 @@ class URLController extends Controller
      * @param  \App\Models\URL  $uRL
      * @return \Illuminate\Http\Response
      */
-    public function show(URL $uRL)
+    public function show($id)
     {
-        //
+        // view link page
+        $url = Url::where('id', '=', $id)->first();
+        if($url){
+            // updating views count every time a link is viewed
+            $url->increment('views');
+            $url->save();
+            return view('show', ['url' => $url]); 
+        }else{
+            return view('show', ['url' => NULL])->withErrors(['msg' => 'Link does not exist']);; 
+        }
     }
 
     /**

@@ -39,7 +39,7 @@
                         <tr>
                             <th scope="row">{{ $url->id }}</th>
                             <td>{{ $url->destination }}</td>
-                            <td>{{ $url->slug }}</td>
+                            <td>{{ $url->shortened_url }}</td>
                             <td>{{ $url->views }}</td>
                             <td>
                              <a href="{{ url('url/'.$url->id) }}" class="link-primary">View</a>
