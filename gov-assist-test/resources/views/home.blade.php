@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
+    <div class="d-flex justify-content-center my-5">
+        <button class="btn btn-primary">
+            <a href="/url/create"class="text-white text-decoration-none">Add New Link</a>
+        </button>
+    </div>
+</div>
 @if(empty($urls))
 <div class="container">
     <div class="row justify-content-center my-5">
@@ -14,13 +21,6 @@
 @endif
 @isset($urls)
 <div class="container">
-    <div class="row justify-content-center my-5">
-        <div class="col-md-2">
-            <button class="btn btn-primary">
-             <a href="/url/create"class="text-white text-decoration-none">Add New Link</a>
-            </button>
-        </div>
-    </div>
     <div class="row justify-content-center">
         <div class="col-md-6">
             <table class="table">
@@ -31,6 +31,7 @@
                     <th scope="col">Destination</th>
                     <th scope="col">Shortened Link</th>
                     <th scope="col">Views Count</th>
+                    <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +41,9 @@
                             <td>{{ $url->destination }}</td>
                             <td>{{ $url->slug }}</td>
                             <td>{{ $url->views }}</td>
+                            <td>
+                             <a href="{{ url('url/'.$url->id) }}" class="link-primary">View</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

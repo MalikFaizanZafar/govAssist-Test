@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\URL;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Redirect;
 
 class URLController extends Controller
 {
@@ -26,7 +28,8 @@ class URLController extends Controller
      */
     public function create()
     {
-        //
+        // Page for creating new Url
+        return view('new');
     }
 
     /**
@@ -37,7 +40,16 @@ class URLController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Adding new Url
+        $existingUrl = Url::where('destination', '=', $request->destination)->get();
+        if(count($existingUrl) > 0){
+            return Redirect::back()->withErrors(['msg' => 'Link already exists']);
+        }
+        $input['destination'] = $request->destination;
+        $input['slug'] = Str::random(5);
+        $input['views'] = 0;
+        $url = Url::create($input);
+        return redirect('url')->with('status', 'New Link has been inserted');
     }
 
     /**
